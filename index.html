@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Header Design</title>
+    <title>Masterclass</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="CSS/style.css">
     <!-- Bootstrap 5 -->
@@ -11,16 +11,37 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '693778027140210');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=693778027140210&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+
 </head>
 
 <body>
 
     <header class="top-header py-3">
         <div class="container">
-            <div class="row align-items-center g-3">
+            <div class="row align-items-center">
 
                 <!-- Left Content -->
-                <div class="col-lg-5 col-md-12 d-flex align-items-center gap-3">
+                <div class="col-lg-5 col-6 d-flex align-items-center gap-3">
                     <img src="Images/Logo.png" width="150px" alt="">
                     <!-- <div>
                         <h6 class="mb-1 fw-bold">
@@ -32,17 +53,8 @@
                     </div> -->
                 </div>
 
-                <!-- Middle Pills -->
-                <div class="col-lg-5 col-md-12">
-                    <div class="d-flex flex-wrap gap-2 justify-content-lg-center">
-                        <div class="pill">First of Its Kind in the Market</div>
-                        <div class="pill"><a href="#real" style="text-decoration: none;color: #000;">Real Problems</a></div>
-                        <div class="pill"><a href="#stream" style="text-decoration: none;color: #000;">3-Day System</a></div>
-                    </div>
-                </div>
-
                 <!-- CTA -->
-                <div class="col-lg-2 col-md-12 text-lg-end text-start">
+                <div class="col-lg-7 col-6 text-lg-end text-start">
                     <a onclick="openPopup()" class="cta-btn d-inline-block">
                         Join @ Free
                     </a>
@@ -1054,6 +1066,35 @@
 
         /* Close on overlay click */
         overlay.addEventListener("click", closePopup);
+    </script>
+
+    <script>
+        (function () {
+            let scroll25 = false;
+            let scroll50 = false;
+            let scroll75 = false;
+
+            window.addEventListener('scroll', function () {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPercent = Math.round((scrollTop / docHeight) * 100);
+
+                if (scrollPercent >= 25 && !scroll25) {
+                    fbq('trackCustom', 'Scroll_25');
+                    scroll25 = true;
+                }
+
+                if (scrollPercent >= 50 && !scroll50) {
+                    fbq('trackCustom', 'Scroll_50');
+                    scroll50 = true;
+                }
+
+                if (scrollPercent >= 75 && !scroll75) {
+                    fbq('trackCustom', 'Scroll_75');
+                    scroll75 = true;
+                }
+            });
+        })();
     </script>
 
 
