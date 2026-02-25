@@ -119,6 +119,146 @@
                 font-size: 24px;
             }
         }
+
+        /* Trigger button (use your image here) */
+        .download-trigger {
+            background: transparent;
+            border: 0;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .download-trigger img {
+            display: block;
+            max-width: 240px;
+            height: auto;
+        }
+
+        /* Overlay */
+        .win-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .45);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .win-modal-overlay.is-open {
+            display: flex;
+        }
+
+        /* Modal */
+        .win-modal {
+            width: min(760px, 92vw);
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        }
+
+        /* Header */
+        .win-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            border-bottom: 1px solid #e9ecef;
+            background: #f8f9fa;
+        }
+
+        .win-modal-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: 500;
+            color: #222;
+        }
+
+        .win-logo {
+            width: 26px;
+            height: 26px;
+            flex: 0 0 26px;
+        }
+
+        .win-modal-close {
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            font-size: 26px;
+            line-height: 1;
+            color: #666;
+        }
+
+        .win-modal-close:hover {
+            background: rgba(0, 0, 0, .06);
+        }
+
+        /* Body */
+        .win-modal-body {
+            padding: 26px 18px 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Download buttons row */
+        .win-btn-row {
+            display: flex;
+            gap: 26px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Pill button */
+        .win-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 999px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, .18);
+            transition: transform .12s ease, opacity .12s ease;
+            user-select: none;
+        }
+
+        .win-pill:hover {
+            opacity: .92;
+            transform: translateY(-1px);
+        }
+
+        .win-pill:active {
+            transform: translateY(0);
+        }
+
+        .dl-ico {
+            width: 20px;
+            height: 20px;
+            flex: 0 0 20px;
+        }
+
+        /* Small responsiveness */
+        @media (max-width: 480px) {
+            .win-modal-title {
+                font-size: 18px;
+            }
+
+            .win-pill {
+                font-size: 16px;
+                padding: 12px 22px;
+            }
+        }
     </style>
 </head>
 
@@ -127,16 +267,117 @@
     <div class="thankyou-card">
         <div class="check-icon">✓</div>
 
-        <h1 class="thankyou-title">Thank You!</h1>
+        <h1 class="thankyou-title"> Thank You For Registering </h1>
 
         <p class="thankyou-text">
-            We’ve received your details successfully.
-            Our team will get in touch with you shortly to discuss your requirements.
+            To Attend The 3 Day Free UPSC Prelims Masterclass Please Download Our App From Following Links
         </p>
+        <div class="d-flex gap-3">
+            <a href="https://play.google.com/store/apps/details?id=com.iasment.app&hl=en_IN" id="android"><img
+                    src="https://curiousapes.in/Images/Androi.png" width="164px" alt=""></a>
+            <a href="https://apps.apple.com/il/app/iasment/id6743084039" id="apple"><img
+                    src="https://curiousapes.in/Images/Apple.png" width="164px" alt=""></a>
+            <!-- ✅ Trigger (replace image src with your badge image) -->
+            <button class="download-trigger" id="openWinModal" aria-label="Open download popup">
+                <img src="Images/window store@4x.png" alt="Download for Windows" />
+            </button>
 
-        <a href="/" class="home-btn">Back to Home</a>
+            <!-- ✅ Modal -->
+            <div class="win-modal-overlay" id="winModal" aria-hidden="true">
+                <div class="win-modal" role="dialog" aria-modal="true" aria-labelledby="winModalTitle">
+                    <div class="win-modal-header">
+                        <div class="win-modal-title" id="winModalTitle">
+                            <!-- Windows logo -->
+                            <svg class="win-logo" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M2 5.2 11 4v8H2V5.2Z" fill="#111" />
+                                <path d="M13 3.8 22 2v10h-9V3.8Z" fill="#111" />
+                                <path d="M2 12.8h9v8L2 19.6v-6.8Z" fill="#111" />
+                                <path d="M13 12.8h9v10l-9-1.8v-8.2Z" fill="#111" />
+                            </svg>
+                            Windows Application
+                        </div>
+
+                        <button class="win-modal-close" type="button" id="closeWinModal" aria-label="Close">
+                            ×
+                        </button>
+                    </div>
+
+                    <div class="win-modal-body">
+                        <div class="win-btn-row">
+                            <!-- ✅ Replace href with your real download links -->
+                            <a class="win-pill" href="https://d6fwwwk80dgr2.cloudfront.net/697/admin_v1/sample/7998570_IASment%20Setup%20V2.0%2032bit.exe" download>
+                                <svg class="dl-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M12 3v10" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+                                    <path d="M8 10.5 12 13.8l4-3.3" stroke="#fff" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M4 16h16v4H4v-4Z" fill="#fff" />
+                                </svg>
+                                Windows x32
+                            </a>
+
+                            <a class="win-pill" href="https://d6fwwwk80dgr2.cloudfront.net/697/admin_v1/sample/53188340_IASment%20Setup%20%281%29.exe" download>
+                                <svg class="dl-ico" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M12 3v10" stroke="#fff" stroke-width="2" stroke-linecap="round" />
+                                    <path d="M8 10.5 12 13.8l4-3.3" stroke="#fff" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M4 16h16v4H4v-4Z" fill="#fff" />
+                                </svg>
+                                Windows x64
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <a href="/" class="home-btn">Back to Home</a> -->
     </div>
 
+
+
+    <script>
+        const modal = document.getElementById("winModal");
+        const openBtn = document.getElementById("openWinModal");
+        const closeBtn = document.getElementById("closeWinModal");
+
+        function openModal() {
+            modal.classList.add("is-open");
+            modal.setAttribute("aria-hidden", "false");
+        }
+
+        function closeModal() {
+            modal.classList.remove("is-open");
+            modal.setAttribute("aria-hidden", "true");
+        }
+
+        openBtn.addEventListener("click", openModal);
+        closeBtn.addEventListener("click", closeModal);
+
+        // close on overlay click
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // close on ESC
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+        });
+    </script>
+    <script>
+        document.getElementById("apple").addEventListener("click", function () {
+            fbq('track', 'Apple_Click', {
+                platform: 'iOS'
+            });
+        });
+    </script>
+
+    <script>
+        document.getElementById("android").addEventListener("click", function () {
+            fbq('track', 'Android_Click', {
+                platform: 'Android'
+            });
+        });
+    </script>
 
     <!-- META PIXEL THANK YOU EVENT -->
     <script>
